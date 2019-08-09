@@ -21,8 +21,8 @@
 							<tbody>
 								<tr class="row100 body" v-for="result in results.data" :key="result">
 									<td class="cell100 column1">{{result.name}}</td>
-									<td class="cell100 column2">{{result.name}}</td>
-									<td class="cell100 column3">{{result.name}}</td>
+									<td class="cell100 column2">{{result.email}}</td>
+									<td class="cell100 column3">{{result.gender}}</td>
 								</tr>
 							</tbody>
 						</table>
