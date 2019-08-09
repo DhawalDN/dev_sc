@@ -1,0 +1,68 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   '@/component/register',
+1 verbose cli   '@/component/students' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData @/component/register
+8 silly fetchPackageMetaData @/component/students
+9 silly fetchOtherPackageData @/component/register
+10 silly cache add args [ '@/component/register', null ]
+11 verbose cache add spec @/component/register
+12 silly fetchOtherPackageData @/component/students
+13 silly cache add args [ '@/component/students', null ]
+14 verbose cache add spec @/component/students
+15 silly cache add parsed spec Result {
+15 silly cache add   raw: '@/component/register',
+15 silly cache add   scope: null,
+15 silly cache add   name: null,
+15 silly cache add   rawSpec: '@/component/register',
+15 silly cache add   spec: '/home/test4/go/src/dev_sc/client/@/component/register',
+15 silly cache add   type: 'local' }
+16 silly cache add parsed spec Result {
+16 silly cache add   raw: '@/component/students',
+16 silly cache add   scope: null,
+16 silly cache add   name: null,
+16 silly cache add   rawSpec: '@/component/students',
+16 silly cache add   spec: '/home/test4/go/src/dev_sc/client/@/component/students',
+16 silly cache add   type: 'local' }
+17 error addLocal Could not install /home/test4/go/src/dev_sc/client/@/component/register
+18 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/register'
+18 silly fetchPackageMetaData  error for @/component/register { Error: ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/register'
+18 silly fetchPackageMetaData   errno: -2,
+18 silly fetchPackageMetaData   code: 'ENOENT',
+18 silly fetchPackageMetaData   syscall: 'open',
+18 silly fetchPackageMetaData   path: '/home/test4/go/src/dev_sc/client/@/component/register' }
+19 error addLocal Could not install /home/test4/go/src/dev_sc/client/@/component/students
+20 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/students'
+20 silly fetchPackageMetaData  error for @/component/students { Error: ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/students'
+20 silly fetchPackageMetaData   errno: -2,
+20 silly fetchPackageMetaData   code: 'ENOENT',
+20 silly fetchPackageMetaData   syscall: 'open',
+20 silly fetchPackageMetaData   path: '/home/test4/go/src/dev_sc/client/@/component/students' }
+21 silly rollbackFailedOptional Starting
+22 silly rollbackFailedOptional Finishing
+23 silly runTopLevelLifecycles Starting
+24 silly runTopLevelLifecycles Finishing
+25 silly install printInstalled
+26 verbose stack Error: ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/register'
+27 verbose cwd /home/test4/go/src/dev_sc/client
+28 error Linux 4.15.0-20-generic
+29 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--save" "@/component/register" "@/component/students"
+30 error node v8.10.0
+31 error npm  v3.5.2
+32 error path /home/test4/go/src/dev_sc/client/@/component/register
+33 error code ENOENT
+34 error errno -2
+35 error syscall open
+36 error enoent ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/register'
+37 error enoent ENOENT: no such file or directory, open '/home/test4/go/src/dev_sc/client/@/component/register'
+37 error enoent This is most likely not a problem with npm itself
+37 error enoent and is related to npm not being able to find a file.
+38 verbose exit [ -2, true ]
