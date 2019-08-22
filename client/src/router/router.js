@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import register from '@/components/register'
 import students from '@/components/students'
 
+
 Vue.use(Router)
 
 

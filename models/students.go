@@ -34,14 +34,14 @@ func (m *StudentModel) Create(data forms.CreateStudentCommand) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
+	fmt.Println("Inserted a single document:", insertResult)
 	return err
 }
 
 func (m *StudentModel) Find() (list []*Student, err error) {
 
 	collection := client.Database("db-mgo").Collection("students")
-	cur, err := collection.Find(context.TODO(), bson.M{})
+	cur, err := collection.Find(context.TODO(), bson.M{"isDelete": false})
 	for cur.Next(context.TODO()) {
 		var li Student
 		err = cur.Decode(&li)
@@ -63,12 +63,38 @@ func (m *StudentModel) Get(id string) (student Student, err error) {
 	return student, err
 }
 
-func (m *StudentModel) Update(id string, data forms.CreateStudentCommand) (err error) {
+func (m *StudentModel) Update(data forms.UpdateStudentCommand) (err error) {
+
+	collection := client.Database("db-mgo").Collection("students")
+	oid, _ := primitive.ObjectIDFromHex(data.ID)
+	filter := bson.M{"_id": oid}
+
+	fmt.Println("IN model: ")
+	update := bson.M{"$set": bson.M{"name": data.Name, "email": data.Email, "gender": data.Gender}}
+	// update := bson.M{"name": data.Name, "email": data.Email, "gender": data.Gender}
+	updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Matched %v documents and updated %v documents.\n", updateResult.MatchedCount, updateResult.ModifiedCount)
 
 	return err
 }
 
-func (m *StudentModel) Delete(id string) (err error) {
+func (m *StudentModel) Delete(data forms.UpdateStudentCommand) (err error) {
+
+	collection := client.Database("db-mgo").Collection("students")
+	oid, _ := primitive.ObjectIDFromHex(data.ID)
+	filter := bson.M{"_id": oid}
+	update := bson.M{"$set": bson.M{"isDelete": true}}
+	fmt.Println(filter)
+	updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Matched %v documents and updated %v documents.\n", updateResult.MatchedCount, updateResult.ModifiedCount)
 
 	return err
 }

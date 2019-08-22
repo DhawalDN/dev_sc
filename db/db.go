@@ -26,5 +26,5 @@ func GetClient() *mongo.Client {
 		log.Fatal(err)
 	}
 	return client
-	//fmt.Println("Connected to MongoDB!")
+
 }

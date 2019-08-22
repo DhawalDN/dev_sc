@@ -32,7 +32,7 @@ func (student *StudentController) Create(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "Student Registered", "form": data})
 }
 
-func (movie *StudentController) Find(c *gin.Context) {
+func (student *StudentController) Find(c *gin.Context) {
 	list, err := studentModel.Find()
 	if err != nil {
 		c.JSON(404, gin.H{"message": "Find Error", "error": err.Error()})
@@ -42,7 +42,7 @@ func (movie *StudentController) Find(c *gin.Context) {
 	}
 }
 
-func (movie *StudentController) Get(c *gin.Context) {
+func (student *StudentController) Get(c *gin.Context) {
 	id := c.Param("id")
 	profile, err := studentModel.Get(id)
 	if err != nil {
@@ -53,16 +53,17 @@ func (movie *StudentController) Get(c *gin.Context) {
 	}
 }
 
-func (movie *StudentController) Update(c *gin.Context) {
-	id := c.Param("id")
-	data := forms.CreateStudentCommand{}
+func (student *StudentController) Update(c *gin.Context) {
+	//id := c.Param("id")
+	data := forms.UpdateStudentCommand{}
 
 	if c.BindJSON(&data) != nil {
 		c.JSON(406, gin.H{"message": "Invalid Parameters"})
 		c.Abort()
 		return
 	}
-	err := studentModel.Update(id, data)
+	fmt.Println(data)
+	err := studentModel.Update(data)
 	if err != nil {
 		c.JSON(406, gin.H{"message": "Student Data Could Not Be Updated", "error": err.Error()})
 		c.Abort()
@@ -71,10 +72,16 @@ func (movie *StudentController) Update(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "Student Data Updated"})
 }
 
-func (movie *StudentController) Delete(c *gin.Context) {
-	id := c.Param("id")
-	fmt.Println(id)
-	err := studentModel.Delete(id)
+func (student *StudentController) Delete(c *gin.Context) {
+	data := forms.UpdateStudentCommand{}
+
+	if c.BindJSON(&data) != nil {
+		c.JSON(406, gin.H{"message": "Invalid Parameters"})
+		c.Abort()
+		return
+	}
+	fmt.Println(data)
+	err := studentModel.Delete(data)
 	if err != nil {
 		c.JSON(406, gin.H{"message": "Student Could Not Be Deleted", "error": err.Error()})
 		c.Abort()
